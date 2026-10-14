@@ -26,9 +26,10 @@ def simulate_hospital(lam, mu, c, horizon, warmup, seed, waiting=True, sample_ev
     events = []          # lista de eventos futuros (heap ordenado por tiempo)
     counter = 0          # desempata eventos con el mismo tiempo
 
-    def schedule(t, kind):
+    def schedule(t, kind, info=None):
+        # info = (t_llegada, medido) del paciente que ocupa la cama; sirve para medir W en la salida
         nonlocal counter
-        heapq.heappush(events, (t, counter, kind))
+        heapq.heappush(events, (t, counter, kind, info))
         counter += 1
 
     schedule(rng.expovariate(lam), 'arrival')
@@ -44,11 +45,13 @@ def simulate_hospital(lam, mu, c, horizon, warmup, seed, waiting=True, sample_ev
     admitted = 0
     wait_sum = 0.0
     wait_count = 0
+    sojourn_sum = 0.0              # suma de tiempos en el sistema (llegada -> salida) de los medidos
+    sojourn_count = 0
     trayectoria = []
     next_sample = 0.0
 
     while events:
-        t, _, kind = heapq.heappop(events)
+        t, _, kind, info = heapq.heappop(events)
         end = min(t, horizon)
         left = max(t_prev, warmup)
         # (i) Promedio PONDERADO POR TIEMPO: L = (1/T) ∫ N(t) dt. El estado vigente se
@@ -83,7 +86,7 @@ def simulate_hospital(lam, mu, c, horizon, warmup, seed, waiting=True, sample_ev
                 if measured:
                     admitted += 1
                     wait_count += 1         # espera 0 (entra directo): también cuenta para Wq
-                schedule(t + rng.expovariate(mu), 'departure')
+                schedule(t + rng.expovariate(mu), 'departure', (t, measured))
             elif waiting:
                 queue.append((t, measured))
                 if measured:
@@ -93,13 +96,17 @@ def simulate_hospital(lam, mu, c, horizon, warmup, seed, waiting=True, sample_ev
                 if measured:
                     blocked += 1            # M/M/c/c: se pierde (B(c,a) en teoría)
         else:
+            # W = tiempo en el sistema (espera + estancia); se mide en la salida, desde la LLEGADA.
+            if info[1]:
+                sojourn_sum += t - info[0]
+                sojourn_count += 1
             if queue:
                 # (vii) Wq se mide desde la LLEGADA (t_llegada), no desde el inicio del servicio.
                 t_llegada, measured = queue.popleft()
                 if measured:
                     wait_count += 1
                     wait_sum += t - t_llegada
-                schedule(t + rng.expovariate(mu), 'departure')
+                schedule(t + rng.expovariate(mu), 'departure', (t_llegada, measured))
             else:
                 busy -= 1
 
@@ -111,6 +118,9 @@ def simulate_hospital(lam, mu, c, horizon, warmup, seed, waiting=True, sample_ev
         # [CORRECCIÓN] sin datos se devuelve NaN, no 0.0 (un 0.0 inventado se vería como válido).
         'Wq_days': wait_sum / wait_count if wait_count else nan,
         'Wq_hours': 24 * wait_sum / wait_count if wait_count else nan,
+        # W = tiempo medio en el sistema de los pacientes medidos (todos terminan: no hay censura)
+        'W_days': sojourn_sum / sojourn_count if sojourn_count else nan,
+        'W_hours': 24 * sojourn_sum / sojourn_count if sojourn_count else nan,
         'utilization': area_busy / (c * observed),
         'prob_wait': waited / arrivals if arrivals else nan,
         'prob_block': blocked / arrivals if arrivals else nan,
@@ -126,7 +136,7 @@ def simulate_hospital(lam, mu, c, horizon, warmup, seed, waiting=True, sample_ev
     return resultado
 
 
-METRICAS = ('L', 'Lq', 'Wq_hours', 'utilization', 'prob_wait', 'prob_block', 'lambda_ef')
+METRICAS = ('L', 'Lq', 'Wq_hours', 'W_hours', 'utilization', 'prob_wait', 'prob_block', 'lambda_ef')
 
 
 def simulate_replicas(n, master_seed, confidence=0.95, **params):

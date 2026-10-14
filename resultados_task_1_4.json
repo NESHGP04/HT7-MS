@@ -1,0 +1,148 @@
+{
+  "parametros": {
+    "lam": 3.6,
+    "mu": 0.25,
+    "c": 17,
+    "horizon": 3000,
+    "warmup": 100,
+    "n": 30
+  },
+  "welch": {
+    "con": {
+      "dia_estable": 56,
+      "meseta": 2.221259239130435
+    },
+    "sin": {
+      "dia_estable": 25,
+      "meseta": 13.020247971014495
+    }
+  },
+  "con_espera": {
+    "medidas": {
+      "L": {
+        "media": 16.65850017020405,
+        "semiancho": 0.2910639434296837,
+        "teoria": 16.680787144430077,
+        "dentro": true
+      },
+      "Lq": {
+        "media": 2.2603296076143446,
+        "semiancho": 0.22770224159530414,
+        "teoria": 2.280787144430077,
+        "dentro": true
+      },
+      "Wq_hours": {
+        "media": 15.051059982404757,
+        "semiancho": 1.4992274792143723,
+        "teoria": 15.205247629533847,
+        "dentro": true
+      },
+      "W_hours": {
+        "media": 110.99675356414501,
+        "semiancho": 1.8150321727718937,
+        "teoria": 111.20524762953384,
+        "dentro": true
+      },
+      "utilization": {
+        "media": 0.8469512095641007,
+        "semiancho": 0.004410381645292059,
+        "teoria": 0.8470588235294118,
+        "dentro": true
+      },
+      "prob_wait": {
+        "media": 0.4095221032919402,
+        "semiancho": 0.014212293063282817,
+        "teoria": 0.4118087899665417,
+        "dentro": true
+      },
+      "prob_block": {
+        "media": 0.0,
+        "semiancho": 0.0,
+        "teoria": 0.0,
+        "dentro": true
+      },
+      "lambda_ef": {
+        "media": 3.60128735632184,
+        "semiancho": 0.008811375717066989,
+        "teoria": 3.6,
+        "dentro": true
+      }
+    },
+    "little": {
+      "L_sim": 16.65850017020405,
+      "lambda_ef_sim": 3.6012873563218393,
+      "W_dias_sim": 4.624864731839376,
+      "L_por_little": 16.655466883471938,
+      "error_rel_medias": 0.00018208642441517965,
+      "error_rel_replica_media": 0.0007267028236408765,
+      "error_rel_replica_max": 0.00257363775613456,
+      "Lq_sim": 2.260329607614345,
+      "Wq_dias_sim": 0.6271274992668646,
+      "Lq_por_little": 2.258466333911493,
+      "error_rel_medias_Lq": 0.0008243371659493027,
+      "error_rel_replica_media_Lq": 0.0008299358279478534,
+      "error_rel_replica_max_Lq": 0.010258277351742865
+    }
+  },
+  "sin_espera": {
+    "medidas": {
+      "L": {
+        "media": 12.986757405291813,
+        "semiancho": 0.04271155332796047,
+        "teoria": 13.00720993981336,
+        "dentro": true
+      },
+      "Lq": {
+        "media": 0.0,
+        "semiancho": 0.0,
+        "teoria": 0.0,
+        "dentro": true
+      },
+      "Wq_hours": {
+        "media": 0.0,
+        "semiancho": 0.0,
+        "teoria": 0.0,
+        "dentro": true
+      },
+      "W_hours": {
+        "media": 95.83384724555052,
+        "semiancho": 0.36148563942760736,
+        "teoria": 96.0,
+        "dentro": true
+      },
+      "utilization": {
+        "media": 0.7639269061936361,
+        "semiancho": 0.002512444313409437,
+        "teoria": 0.7651299964596093,
+        "dentro": true
+      },
+      "prob_wait": {
+        "media": 0.0,
+        "semiancho": 0.0,
+        "teoria": 0.0,
+        "dentro": true
+      },
+      "prob_block": {
+        "media": 0.09554597132944573,
+        "semiancho": 0.00232387349373545,
+        "teoria": 0.09672153195740564,
+        "dentro": true
+      },
+      "lambda_ef": {
+        "media": 3.2518850574712643,
+        "semiancho": 0.009325540152068474,
+        "teoria": 3.25180248495334,
+        "dentro": true
+      }
+    },
+    "little": {
+      "L_sim": 12.986757405291817,
+      "lambda_ef_sim": 3.2518850574712643,
+      "W_dias_sim": 3.9930769685646044,
+      "L_por_little": 12.98502732740789,
+      "error_rel_medias": 0.00013321861877716498,
+      "error_rel_replica_media": 0.000709517323412227,
+      "error_rel_replica_max": 0.002165317687107807
+    }
+  }
+}
