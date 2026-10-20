@@ -1,0 +1,9 @@
+tipo,variante,camas,metrica,estimacion,IC95_inferior,IC95_superior,semiancho,objetivo,cumple,adicionales
+teorico,sin espera,21,Erlang B (bloqueo),2.398387179491156,,,,≤ 2 %,False,4
+teorico,sin espera,22,Erlang B (bloqueo),1.5455899300975784,,,,≤ 2 %,True,5
+teorico,con espera,18,Wq teórico (h),7.438940517009314,,,,≤ 6 h,False,1
+teorico,con espera,19,Wq teórico (h),3.83079037224205,,,,≤ 6 h,True,2
+simulado,sin espera,21,P_bloqueo (%),2.383779183321432,2.2436276719507466,2.5239306946921176,0.14015151137068552,≤ 2 %,no cumple,4
+simulado,sin espera,22,P_bloqueo (%),1.593240461319868,1.5035626861228406,1.6829182365168955,0.08967777519702745,≤ 2 %,cumple,5
+simulado,con espera,18,Wq (h),7.313213067026906,6.747239863407655,7.879186270646157,0.5659732036192509,≤ 6 h,no cumple,1
+simulado,con espera,19,Wq (h),3.5481950605567905,3.227498108276978,3.868892012836603,0.32069695227981265,≤ 6 h,cumple,2

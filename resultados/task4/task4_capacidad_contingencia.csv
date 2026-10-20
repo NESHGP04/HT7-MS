@@ -1,0 +1,3 @@
+camas,camas_adicionales,fraccion_media,IC95_inferior,IC95_superior,desviados_medios,cumple_media,cumple_limite_superior
+22,0,0.03472474091764421,0.031882778748188345,0.03756670308710007,27.19,True,True
+23,1,0.02439726938958377,0.02197291241110096,0.026821626368066582,19.12,True,True

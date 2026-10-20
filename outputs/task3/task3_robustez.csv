@@ -1,0 +1,9 @@
+escenario,variante,llegadas,estancia_media,Cs,distribucion,camas_minimas,camas_adicionales_sobre_17,metrica_meta,meta,estimacion_teorica_o_simulada,teorico,IC95_inferior,IC95_superior,metodo,veredicto
+base,sin espera,3.6,4.0,1.0,exponencial,22,5,P_bloqueo,0.02,0.015127216006135397,0.015455899300975785,0.014149017416363065,0.016105414595907728,Erlang + simulación M/M,cumple
+base,con espera,3.6,4.0,1.0,exponencial,19,2,Wq_horas,6.0,3.739790726183636,3.83079037224205,3.3886259022796508,4.090955550087622,Erlang + simulación M/M,cumple
+estancia_+25%,sin espera,3.6,5.0,1.0,exponencial,26,9,P_bloqueo,0.02,0.0156575374752418,0.016850146694579616,0.014854931781333706,0.016460143169149892,Erlang + simulación M/M,cumple
+estancia_+25%,con espera,3.6,5.0,1.0,exponencial,23,6,Wq_horas,6.0,4.697861066245929,4.576606664720101,4.197648120179178,5.198074012312681,Erlang + simulación M/M,cumple
+llegadas_+15%,sin espera,4.14,4.0,1.0,exponencial,24,7,P_bloqueo,0.02,0.01864340684472176,0.01935310201806575,0.017754380031741943,0.019532433657701576,Erlang + simulación M/M,cumple
+llegadas_+15%,con espera,4.14,4.0,1.0,exponencial,21,4,Wq_horas,6.0,4.719130859309901,4.782327015895994,4.330702562467935,5.107559156151868,Erlang + simulación M/M,cumple
+Cs=2_lognormal,sin espera,3.6,4.0,2.0,lognormal,22,5,P_bloqueo,0.02,0.014782540527720182,0.015455899300975785,0.013872154794170541,0.015692926261269825,Erlang B (insensibilidad) + sim M/G/c/c (3000 d),cumple
+Cs=2_lognormal,con espera,3.6,4.0,2.0,lognormal,20,3,Wq_horas,6.0,3.8810990516916175,5.022294149143367,3.1556111126400315,4.606586990743203,simulación M/G/c (3000 d); AC solo referencia,cumple
